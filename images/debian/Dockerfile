@@ -2,6 +2,7 @@ FROM linuxserver/webtop:debian-kde
 
 RUN echo "***** First we will update the packages *****"
 RUN sudo apt update
+RUN sudo apt upgrade -y
 RUN echo "***** Install wget to download software *****"
 RUN sudo apt install wget -y
 RUN echo "***** Make a temporary directory to install software and clean it afterwards *****"

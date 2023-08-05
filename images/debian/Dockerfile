@@ -17,8 +17,8 @@ RUN wget https://github.com/OpenTaal/opentaal-hunspell/raw/master/nl.dic
 RUN wget https://github.com/OpenTaal/opentaal-hunspell/raw/master/nl.aff
 RUN wget https://github.com/coskun1990/opentaal-hunspell/raw/master/dict.conf
 RUN sudo mkdir /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL
-RUN sudo cp /config/tmp/dictionaries/nl_NL/nl.dic /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL/main.dic
-RUN sudo cp /config/tmp/dictionaries/nl_NL/nl.aff /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL/main.aff
-RUN sudo cp /config/tmp/dictionaries/nl_NL/dict.conf /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL/dict.conf
+RUN sudo cp ./nl_NL/nl.dic /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL/main.dic
+RUN sudo cp ./nl_NL/nl.aff /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL/main.aff
+RUN sudo cp ./nl_NL/dict.conf /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL/dict.conf
 
 RUN echo "***** Everything is installed succesfully *****"

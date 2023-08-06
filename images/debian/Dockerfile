@@ -21,4 +21,12 @@ RUN sudo cp /config/tmp/dictionaries/nl_NL/nl.dic /opt/kingsoft/wps-office/offic
 RUN sudo cp /config/tmp/dictionaries/nl_NL/nl.aff /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL/main.aff
 RUN sudo cp /config/tmp/dictionaries/nl_NL/dict.conf /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL/dict.conf
 
+WORKDIR /config/tmp
+RUN wget http://deb.anydesk.com/pool/main/a/anydesk/anydesk_6.2.1_amd64.deb
+RUN sudo apt install ./anydesk_6.2.1_amd64.deb -y
+
+#WORKDIR /config/Desktop
+#RUN sudo sh -c "echo '[Desktop Entry]\nName=Full HD\nExec=kscreen-doctor output.VNC-0.mode.62\nType=Application\nTerminal=false' > ./fullhd.desktop"
+#RUN sudo sh -c "echo '[Desktop Entry]\nName=Restore\nExec=kscreen-doctor output.VNC-0.mode.1331\nType=Application\nTerminal=false' > ./reset.desktop"
+
 RUN echo "***** Everything is installed succesfully *****"

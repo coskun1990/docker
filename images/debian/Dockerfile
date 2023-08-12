@@ -29,4 +29,12 @@ RUN sudo apt install ./anydesk_6.2.1_amd64.deb -y
 #RUN sudo sh -c "echo '[Desktop Entry]\nName=Full HD\nExec=kscreen-doctor output.VNC-0.mode.62\nType=Application\nTerminal=false' > ./fullhd.desktop"
 #RUN sudo sh -c "echo '[Desktop Entry]\nName=Restore\nExec=kscreen-doctor output.VNC-0.mode.1331\nType=Application\nTerminal=false' > ./reset.desktop"
 
+RUN echo "***** Let's clean ;-) *****"
+
+WORKDIR /config/tmp/
+RUN rm -r dictionaries
+RUN rm anydesk_6.2.1_amd64.deb
+
+RUN echo "***** Cleaing is done :-) *****"
+
 RUN echo "***** Everything is installed succesfully *****"

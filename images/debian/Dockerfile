@@ -34,6 +34,7 @@ RUN echo "***** Let's clean ;-) *****"
 WORKDIR /config/tmp/
 RUN rm -r dictionaries
 RUN rm anydesk_6.2.1_amd64.deb
+RUN rm wps-office_11.1.0.11698.XA_amd64.deb
 
 RUN echo "***** Cleaing is done :-) *****"
 

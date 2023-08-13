@@ -24,8 +24,8 @@ RUN wget https://github.com/peazip/PeaZip/releases/download/9.3.0/peazip_9.3.0.L
 RUN sudo apt install ./peazip_9.3.0.LINUX.GTK2-1_amd64.deb -y
 
 # Install Microsoft Edge
-RUN wget https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_115.0.1901.203-1_amd64.deb
-RUN sudo apt install ./microsoft-edge-stable_115.0.1901.203-1_amd64.deb -y
+RUN curl -o ms-edge-latest.deb -L "https://go.microsoft.com/fwlink?linkid=2149051"
+RUN sudo apt install ./ms-edge-latest.deb -y
 
 # Install WPS Office Spell Check
 WORKDIR /config/tmp/dictionaries/nl_NL

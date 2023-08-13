@@ -13,7 +13,7 @@ RUN echo "***** Make a temporary directory to install software and clean it afte
 WORKDIR /config/tmp
 
 # Install Flameshot (screenshot tool; https://flameshot.org/)
-RUN apt install flameshot
+RUN sudo apt install flameshot -y
 
 # Install WPS Office
 RUN wget https://wdl1.pcfg.cache.wpscdn.com/wpsdl/wpsoffice/download/linux/11698/wps-office_11.1.0.11698.XA_amd64.deb

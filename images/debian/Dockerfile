@@ -10,14 +10,14 @@ RUN sudo apt install libgtk2.0-0 -y
 
 RUN echo "***** Make a temporary directory to install software and clean it afterwards *****"
 
-WORKDIR /config/tmp
+WORKDIR /config/tmp/install
 
 # Install Flameshot (screenshot tool; https://flameshot.org/)
 RUN sudo apt install flameshot -y
 
 # Install WPS Office
-RUN wget https://wdl1.pcfg.cache.wpscdn.com/wpsdl/wpsoffice/download/linux/11698/wps-office_11.1.0.11698.XA_amd64.deb
-RUN sudo apt install ./wps-office_11.1.0.11698.XA_amd64.deb -y
+RUN wget https://wdl1.pcfg.cache.wpscdn.com/wpsdl/wpsoffice/download/linux/11701/wps-office_11.1.0.11701.XA_amd64.deb
+RUN sudo apt install ./wps-office_11.1.0.11701.XA_amd64.deb -y
 
 # Install PeaZip
 RUN wget https://github.com/peazip/PeaZip/releases/download/9.3.0/peazip_9.3.0.LINUX.GTK2-1_amd64.deb
@@ -26,6 +26,10 @@ RUN sudo apt install ./peazip_9.3.0.LINUX.GTK2-1_amd64.deb -y
 # Install Microsoft Edge
 RUN curl -o ms-edge-latest.deb -L "https://go.microsoft.com/fwlink?linkid=2149051"
 RUN sudo apt install ./ms-edge-latest.deb -y
+
+# Install AnyDesk
+RUN wget http://deb.anydesk.com/pool/main/a/anydesk/anydesk_6.2.1_amd64.deb
+RUN sudo apt install ./anydesk_6.2.1_amd64.deb -y
 
 # Install WPS Office Spell Check
 WORKDIR /config/tmp/dictionaries/nl_NL
@@ -37,23 +41,14 @@ RUN sudo cp /config/tmp/dictionaries/nl_NL/nl.dic /opt/kingsoft/wps-office/offic
 RUN sudo cp /config/tmp/dictionaries/nl_NL/nl.aff /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL/main.aff
 RUN sudo cp /config/tmp/dictionaries/nl_NL/dict.conf /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL/dict.conf
 
-WORKDIR /config/tmp
-
-# Install AnyDesk
-RUN wget http://deb.anydesk.com/pool/main/a/anydesk/anydesk_6.2.1_amd64.deb
-RUN sudo apt install ./anydesk_6.2.1_amd64.deb -y
-
 #WORKDIR /config/Desktop
 #RUN sudo sh -c "echo '[Desktop Entry]\nName=Full HD\nExec=kscreen-doctor output.VNC-0.mode.62\nType=Application\nTerminal=false' > ./fullhd.desktop"
 #RUN sudo sh -c "echo '[Desktop Entry]\nName=Restore\nExec=kscreen-doctor output.VNC-0.mode.1331\nType=Application\nTerminal=false' > ./reset.desktop"
 
 RUN echo "***** Let's clean ;-) *****"
 
-RUN rm -r dictionaries
-RUN rm anydesk_6.2.1_amd64.deb
-RUN rm wps-office_11.1.0.11698.XA_amd64.deb
-RUN rm peazip_9.3.0.LINUX.GTK2-1_amd64.deb
-RUN rm microsoft-edge-stable_115.0.1901.203-1_amd64.deb
+RUN rm -r /config/tmp/dictionaries
+RUN rm -r /config/tmp/install
 
 RUN echo "***** Cleaing is done :-) *****"
 

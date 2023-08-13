@@ -5,13 +5,29 @@ RUN sudo apt update
 RUN sudo apt upgrade -y
 RUN echo "***** Install wget to download software *****"
 RUN sudo apt install wget -y
+RUN echo "***** Install libaries *****"
+RUN sudo apt install libgtk2.0-0 -y
 
 RUN echo "***** Make a temporary directory to install software and clean it afterwards *****"
 
 WORKDIR /config/tmp
+
+# Install Flameshot (screenshot tool; https://flameshot.org/)
+RUN apt install flameshot
+
+# Install WPS Office
 RUN wget https://wdl1.pcfg.cache.wpscdn.com/wpsdl/wpsoffice/download/linux/11698/wps-office_11.1.0.11698.XA_amd64.deb
 RUN sudo apt install ./wps-office_11.1.0.11698.XA_amd64.deb -y
 
+# Install PeaZip
+RUN wget https://github.com/peazip/PeaZip/releases/download/9.3.0/peazip_9.3.0.LINUX.GTK2-1_amd64.deb
+RUN sudo apt install ./peazip_9.3.0.LINUX.GTK2-1_amd64.deb -y
+
+# Install Microsoft Edge
+RUN wget https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_115.0.1901.203-1_amd64.deb
+RUN sudo apt install ./microsoft-edge-stable_115.0.1901.203-1_amd64.deb -y
+
+# Install WPS Office Spell Check
 WORKDIR /config/tmp/dictionaries/nl_NL
 RUN wget https://github.com/OpenTaal/opentaal-hunspell/raw/master/nl.dic
 RUN wget https://github.com/OpenTaal/opentaal-hunspell/raw/master/nl.aff
@@ -22,6 +38,8 @@ RUN sudo cp /config/tmp/dictionaries/nl_NL/nl.aff /opt/kingsoft/wps-office/offic
 RUN sudo cp /config/tmp/dictionaries/nl_NL/dict.conf /opt/kingsoft/wps-office/office6/dicts/spellcheck/nl_NL/dict.conf
 
 WORKDIR /config/tmp
+
+# Install AnyDesk
 RUN wget http://deb.anydesk.com/pool/main/a/anydesk/anydesk_6.2.1_amd64.deb
 RUN sudo apt install ./anydesk_6.2.1_amd64.deb -y
 
@@ -31,10 +49,11 @@ RUN sudo apt install ./anydesk_6.2.1_amd64.deb -y
 
 RUN echo "***** Let's clean ;-) *****"
 
-WORKDIR /config/tmp/
 RUN rm -r dictionaries
 RUN rm anydesk_6.2.1_amd64.deb
 RUN rm wps-office_11.1.0.11698.XA_amd64.deb
+RUN rm peazip_9.3.0.LINUX.GTK2-1_amd64.deb
+RUN rm microsoft-edge-stable_115.0.1901.203-1_amd64.deb
 
 RUN echo "***** Cleaing is done :-) *****"
 
